@@ -186,27 +186,34 @@
   const callBtn = document.getElementById('callBtn');
   const callPopup = document.getElementById('callPopup');
 
-  callBtn.addEventListener('click', () => { callPopup.style.display = 'flex'; });
+  callBtn.addEventListener('click', () => {
+    callPopup.classList.remove('hide');
+    callPopup.classList.add('show');
+    callPopup.style.display = 'flex';
+  });
 
   window.callNumber = function(number) {
-    // Detect if it's mobile
     const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
-    
     if(isMobile){
-      // Mobile or tablet: open dialer
       window.location.href = `tel:${number}`;
     } else {
-      // Desktop: copy to clipboard and alert user
       navigator.clipboard.writeText(number).then(() => {
         alert(`Number ${number} copied to clipboard. You can use your phone to call.`);
       });
     }
-
     closeCallPopup();
   }
 
   window.closeCallPopup = function() {
-    callPopup.style.display = 'none';
+    // If mobile/tablet, slide down
+    const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+    if(isMobile){
+      callPopup.classList.remove('show');
+      callPopup.classList.add('hide');
+      setTimeout(() => { callPopup.style.display = 'none'; }, 300);
+    } else {
+      callPopup.style.display = 'none';
+    }
   }
 
   callPopup.addEventListener('click', function(e){
