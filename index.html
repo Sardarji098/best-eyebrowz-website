@@ -183,24 +183,36 @@
 
   // CALL POPUP
   document.addEventListener('DOMContentLoaded', function() {
-    const callBtn = document.getElementById('callBtn');
-    const callPopup = document.getElementById('callPopup');
+  const callBtn = document.getElementById('callBtn');
+  const callPopup = document.getElementById('callPopup');
 
-    callBtn.addEventListener('click', () => { callPopup.style.display = 'flex'; });
+  callBtn.addEventListener('click', () => { callPopup.style.display = 'flex'; });
 
-    window.callNumber = function(number) {
+  window.callNumber = function(number) {
+    // Detect if it's mobile
+    const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+    
+    if(isMobile){
+      // Mobile or tablet: open dialer
       window.location.href = `tel:${number}`;
-      closeCallPopup();
+    } else {
+      // Desktop: copy to clipboard and alert user
+      navigator.clipboard.writeText(number).then(() => {
+        alert(`Number ${number} copied to clipboard. You can use your phone to call.`);
+      });
     }
 
-    window.closeCallPopup = function() {
-      callPopup.style.display = 'none';
-    }
+    closeCallPopup();
+  }
 
-    callPopup.addEventListener('click', function(e){
-      if(e.target === callPopup) closeCallPopup();
-    });
+  window.closeCallPopup = function() {
+    callPopup.style.display = 'none';
+  }
+
+  callPopup.addEventListener('click', function(e){
+    if(e.target === callPopup) closeCallPopup();
   });
+});
 </script>
 
 </body>
