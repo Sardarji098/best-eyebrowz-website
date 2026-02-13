@@ -23,23 +23,8 @@
     <h1>Luxury Brow & Face Threading</h1>
     <p>Perfect brows. Flawless finish.</p>
     <p class="price">Eyebrows Only $13!</p>
-    <!-- Call Button -->
-<button class="cta" id="callBtn">Call Now</button>
-
- <!-- Call Button -->
-<button class="cta" id="callBtn">Call Now</button>
-
-<!-- Call Choice Popup -->
-<div id="callPopup">
-  <div class="popup-content">
-    <h3>Choose a number to call</h3>
-    <button onclick="callNumber('14143645700')">414‑364‑5700</button>
-    <button onclick="callNumber('14143645600')">414‑364‑5600</button>
-    <button class="closePopup" onclick="closeCallPopup()">Cancel</button>
-  </div>
-</div>
-
-
+    <!-- UPDATED CALL BUTTON -->
+    <button class="cta" id="callBtn">Call Now</button>
   </div>
   <div class="hero-images">
     <img src="https://plus.unsplash.com/premium_vector-1722741891466-2f610c865cf7?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0" alt="Luxury brows">
@@ -88,7 +73,6 @@
       <h3>Lower Lip</h3>
     </div>
  </div>
-
 </section>
 
 <section id="reviews" class="section">
@@ -153,6 +137,16 @@
   <img id="lightbox-img" src="" alt="Service Image">
 </div>
 
+<!-- ===== CALL POPUP ===== -->
+<div id="callPopup">
+  <div class="popup-content">
+    <h3>Choose a number to call</h3>
+    <button onclick="callNumber('14143645700')">414‑364‑5700</button>
+    <button onclick="callNumber('14143645600')">414‑364‑5600</button>
+    <button class="closePopup" onclick="closeCallPopup()">Cancel</button>
+  </div>
+</div>
+
 <!-- ===== JS ===== -->
 <script>
   // Chat
@@ -172,7 +166,6 @@
       const imgSrc = card.getAttribute('data-img');
       const lightbox = document.getElementById('service-lightbox');
       const img = document.getElementById('lightbox-img');
-      
       img.src = imgSrc;
       lightbox.style.display = 'flex';
       img.style.animation = 'none';
@@ -180,56 +173,34 @@
       img.style.animation = 'scaleUp 0.3s ease forwards';
     });
   });
-
   function closeLightbox() {
     const lightbox = document.getElementById('service-lightbox');
     const img = document.getElementById('lightbox-img');
     img.style.transform = 'scale(0.7)';
     img.style.opacity = '0';
-    setTimeout(() => {
-      lightbox.style.display = 'none';
-      img.src = '';
-    }, 300);
-  // Show popup when Call Now is clicked
-document.getElementById('callBtn').addEventListener('click', () => {
-  document.getElementById('callPopup').style.display = 'flex';
-});
+    setTimeout(() => { lightbox.style.display = 'none'; img.src = ''; }, 300);
+  }
 
-// Call the chosen number
-function callNumber(number) {
-  window.location.href = `tel:${number}`;
-  closeCallPopup();
-}
+  // CALL POPUP
+  document.addEventListener('DOMContentLoaded', function() {
+    const callBtn = document.getElementById('callBtn');
+    const callPopup = document.getElementById('callPopup');
 
-// Close popup
-function closeCallPopup() {
-  document.getElementById('callPopup').style.display = 'none';
-}
-// Show popup when Call Now is clicked
-document.getElementById('callBtn').addEventListener('click', (e) => {
-  e.stopPropagation(); // prevent bubbling
-  document.getElementById('callPopup').style.display = 'flex';
-});
+    callBtn.addEventListener('click', () => { callPopup.style.display = 'flex'; });
 
-// Call the chosen number
-function callNumber(number) {
-  window.location.href = `tel:${number}`;
-  closeCallPopup();
-}
+    window.callNumber = function(number) {
+      window.location.href = `tel:${number}`;
+      closeCallPopup();
+    }
 
-// Close popup
-function closeCallPopup() {
-  document.getElementById('callPopup').style.display = 'none';
-}
+    window.closeCallPopup = function() {
+      callPopup.style.display = 'none';
+    }
 
-// Close popup if user clicks outside the content
-document.getElementById('callPopup').addEventListener('click', function(e){
-  if(e.target === this) closeCallPopup();
-});
-}
-
-
-  
+    callPopup.addEventListener('click', function(e){
+      if(e.target === callPopup) closeCallPopup();
+    });
+  });
 </script>
 
 </body>
