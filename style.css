@@ -701,6 +701,38 @@ footer {
   background: #ccc;
   color: #333;
 }
+/* SLIDE UP ANIMATION */
+@keyframes slideUp {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+}
+
+/* Add slide animation only on mobile/tablet */
+@media (max-width: 1024px) {
+  #callPopup.show .popup-content {
+    animation: slideUp 0.3s ease forwards;
+  }
+  #callPopup.hide .popup-content {
+    animation: slideDown 0.3s ease forwards;
+  }
+}
 
 
 }
