@@ -26,6 +26,9 @@
     <!-- Call Button -->
 <button class="cta" id="callBtn">Call Now</button>
 
+ <!-- Call Button -->
+<button class="cta" id="callBtn">Call Now</button>
+
 <!-- Call Choice Popup -->
 <div id="callPopup">
   <div class="popup-content">
@@ -35,6 +38,7 @@
     <button class="closePopup" onclick="closeCallPopup()">Cancel</button>
   </div>
 </div>
+
 
   </div>
   <div class="hero-images">
@@ -201,7 +205,29 @@ function callNumber(number) {
 function closeCallPopup() {
   document.getElementById('callPopup').style.display = 'none';
 }
-  }
+// Show popup when Call Now is clicked
+document.getElementById('callBtn').addEventListener('click', (e) => {
+  e.stopPropagation(); // prevent bubbling
+  document.getElementById('callPopup').style.display = 'flex';
+});
+
+// Call the chosen number
+function callNumber(number) {
+  window.location.href = `tel:${number}`;
+  closeCallPopup();
+}
+
+// Close popup
+function closeCallPopup() {
+  document.getElementById('callPopup').style.display = 'none';
+}
+
+// Close popup if user clicks outside the content
+document.getElementById('callPopup').addEventListener('click', function(e){
+  if(e.target === this) closeCallPopup();
+});
+}
+
 
   
 </script>
