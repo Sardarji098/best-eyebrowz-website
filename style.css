@@ -119,3 +119,78 @@ footer {background:#faf6ef;text-align:center;padding:25px;}
   .hero .price {font-size:20px;}
   .hero-images img {width:120px;}
 }
+/* ===== MOBILE HERO IMPROVEMENT (FRONT PAGE ONLY) ===== */
+@media (max-width: 768px) {
+
+  .hero {
+    min-height: 90vh;
+    padding-top: 110px;
+    padding-bottom: 120px;
+  }
+
+  .hero-content {
+    padding: 0 15px;
+  }
+
+  .hero h1 {
+    font-size: 34px;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 16px;
+    margin-top: 8px;
+  }
+
+  .hero .price {
+    font-size: 22px;
+    margin-top: 12px;
+    background: #fff7ea;
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+
+  .cta {
+    margin-top: 20px;
+    padding: 14px 28px;
+    font-size: 15px;
+  }
+
+  /* push images lower so text stays clean */
+.hero-images {
+  bottom: -40px;
+  right: 10px;
+  opacity: 0.9;
+}
+
+.hero-images img:first-child {
+  width: 110px;
+  right: 130px;
+}
+
+.hero-images img:last-child {
+  width: 110px;
+}
+
+}
+
+/* ===== HIDE HERO PHOTOS ON MOBILE ===== */
+@media (max-width:768px){
+  .hero-images{
+    display:none;
+  }
+}
+
+@media (max-width: 768px){
+  .hero {
+    min-height: auto;      /* let height adjust to content */
+    padding-top: 80px;     /* reduce top padding */
+    padding-bottom: 40px;  /* reduce bottom padding */
+  }
+
+  .hero-content {
+    padding: 0 15px;
+  }
+}
+
